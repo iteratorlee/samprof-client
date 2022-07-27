@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	gpuprofiling "code.byted.org/inf/gpu_profiler_client/go-gen"
+	gpuprofiling "github.com/iteratorlee/samprof-client/go-gen"
 )
 
 func getStallReasonDistribution(r *gpuprofiling.GPUProfilingResponse) map[string][]int {

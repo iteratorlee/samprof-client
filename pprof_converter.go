@@ -3,7 +3,7 @@ package main
 import (
 	// "fmt"
 
-	gpuprofiling "code.byted.org/inf/gpu_profiler_client/go-gen"
+	gpuprofiling "github.com/iteratorlee/samprof-client/go-gen"
 	"github.com/google/pprof/profile"
 )
 
