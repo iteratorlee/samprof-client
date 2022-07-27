@@ -11,7 +11,7 @@ import (
 	"os"
 	"time"
 
-	gpuprofiling "go-gen"
+	gpuprofiling "github.com/samprof-client/go-gen"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/proto"

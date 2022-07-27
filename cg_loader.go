@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	gpuprofiling "code.byted.org/inf/gpu_profiler_client/go-gen"
+	gpuprofiling "github.com/samprof-client/go-gen"
 	"github.com/golang/protobuf/proto"
 )
 
