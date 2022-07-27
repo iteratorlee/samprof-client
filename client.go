@@ -22,6 +22,7 @@ var (
 	duration = flag.Uint("duration", 2000, "PC sampling duration")
 	dumpfn   = flag.String("dumpfn", "", "the dumped profile filename")
 	pbfn     = flag.String("pbfn", "", "the dumped pb profile filename")
+	prune    = flag.Bool("prune", false, "prune the cpuCCTs")
 )
 
 func getProfilingResponseFromFile(s string) *gpuprofiling.GPUProfilingResponse {
@@ -98,6 +99,13 @@ func main() {
 		r, err = c.PerformGPUProfiling(ctx, &gpuprofiling.GPUProfilingRequest{Duration: uint32(*duration)}, maxSizeOption)
 		if err != nil {
 			log.Fatalf("could not perform profiling: %v", err)
+		}
+	}
+	
+	if *prune {
+		cpuCCTs := r.GetCpuCallingCtxTree()
+		for _, cpuCCT := range cpuCCTs {
+			pruneCCT(cpuCCT)
 		}
 	}
 
