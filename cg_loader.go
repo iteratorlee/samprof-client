@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	gpuprofiling "github.com/samprof-client/go-gen"
+	gpuprofiling "github.com/iteratorlee/samprof-client/go-gen"
 	"github.com/golang/protobuf/proto"
 )
 
