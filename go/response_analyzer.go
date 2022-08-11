@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	gpuprofiling "github.com/iteratorlee/samprof-client/go-gen"
+	gpuprofiling "github.com/iteratorlee/samprof-client/go/go-gen"
 )
 
 func getStallReasonDistribution(r *gpuprofiling.GPUProfilingResponse) map[string][]int {

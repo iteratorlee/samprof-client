@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"strings"
 
-	gpuprofiling "github.com/iteratorlee/samprof-client/go-gen"
+	gpuprofiling "github.com/iteratorlee/samprof-client/go/go-gen"
 )
 
 type CriticalNodeType int
