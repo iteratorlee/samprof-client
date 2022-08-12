@@ -1,1 +1,3 @@
 samprof-client
+__pycache__/
+.vscode/
