@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"log"
 
-	gpuprofiling "github.com/iteratorlee/samprof-client/go-gen"
 	"github.com/golang/protobuf/proto"
+	gpuprofiling "github.com/iteratorlee/samprof-client/go/go-gen"
 )
 
 var cgStorePath = flag.String("cgpath", "/root/repos/gpu_profiler/cu_samples/cg_store", "path to cg files, organized by cubin crc")

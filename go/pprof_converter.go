@@ -3,8 +3,8 @@ package main
 import (
 	// "fmt"
 
-	gpuprofiling "github.com/iteratorlee/samprof-client/go-gen"
 	"github.com/google/pprof/profile"
+	gpuprofiling "github.com/iteratorlee/samprof-client/go/go-gen"
 )
 
 var (

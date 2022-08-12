@@ -11,7 +11,7 @@ import (
 	"os"
 	"time"
 
-	gpuprofiling "github.com/iteratorlee/samprof-client/go-gen"
+	gpuprofiling "github.com/iteratorlee/samprof-client/go/go-gen"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/protobuf/proto"
@@ -101,7 +101,7 @@ func main() {
 			log.Fatalf("could not perform profiling: %v", err)
 		}
 	}
-	
+
 	if *prune {
 		cpuCCTs := r.GetCpuCallingCtxTree()
 		for _, cpuCCT := range cpuCCTs {
