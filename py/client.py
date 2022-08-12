@@ -1,6 +1,6 @@
-from webbrowser import get
 import python_gen as gpuprofiling
 import argparse
+import grpc
 def getProfilingResponseFromPB(s:str)->gpuprofiling.GPUProfilingResponse:
     with open(s, "rb") as f:
         return gpuprofiling.GPUProfilingResponse.FromString(f.read())
@@ -20,9 +20,9 @@ if __name__ =="__main__":
     elif args.dumpfn is not None:
         r=getProfilingResponseFromFile(args.dumpfn)
     else:
-        # TODO initiate grpc call
-        pass
-
+        with grpc.insecure_channel(args.addr) as channel:
+            stub = gpuprofiling.GPUProfilingServiceStub(channel)
+            r=stub.PerformGPUProfiling(gpuprofiling.GPUProfilingRequest(duration=args.duration))
     if args.prune is not None:
         #TODO prune cct
         pass
