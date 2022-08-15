@@ -6,8 +6,12 @@ from prune import pruneCCT
 def getProfilingResponseFromPB(s:str)->gpuprofiling.GPUProfilingResponse:
     with open(s, "rb") as f:
         return gpuprofiling.GPUProfilingResponse.FromString(f.read())
+
+
 def getProfilingResponseFromFile(s:str)->gpuprofiling.GPUProfilingResponse:
     return gpuprofiling.GPUProfilingResponse()
+
+
 if __name__ =="__main__":
     logging.basicConfig(level=logging.INFO)
     parser=argparse.ArgumentParser()
@@ -17,7 +21,9 @@ if __name__ =="__main__":
     parser.add_argument('--pbfn',type=str,dest='pbfn',help='the dumped pb profile filename')
     parser.add_argument('--prune',dest='prune',action='store_true',help='prune the cpuCCTS')
     args=parser.parse_args()
+
     r=gpuprofiling.GPUProfilingResponse()
+
     if args.pbfn is not None:
         logging.info(f'loading response from pre-dumped pb: {args.pbfn}')
         r=getProfilingResponseFromPB(args.pbfn)
@@ -29,9 +35,11 @@ if __name__ =="__main__":
         with grpc.insecure_channel(args.addr) as channel:
             stub = gpuprofiling.GPUProfilingServiceStub(channel)
             r=stub.PerformGPUProfiling(gpuprofiling.GPUProfilingRequest(duration=args.duration))
+
     if args.prune is not None:
         for cpuCCT in r.cpuCallingCtxTree:
             pruneCCT(cpuCCT)
 
     #/root/GVProf-samples/pytorch/profiling_response.pb.gz
-    #print(r)
+
+    print(r)
