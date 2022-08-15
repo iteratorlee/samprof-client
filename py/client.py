@@ -2,8 +2,7 @@ import python_gen as gpuprofiling
 import argparse
 import grpc
 import logging
-
-
+from prune import pruneCCT
 def getProfilingResponseFromPB(s:str)->gpuprofiling.GPUProfilingResponse:
     with open(s, "rb") as f:
         return gpuprofiling.GPUProfilingResponse.FromString(f.read())
@@ -38,8 +37,9 @@ if __name__ =="__main__":
             r=stub.PerformGPUProfiling(gpuprofiling.GPUProfilingRequest(duration=args.duration))
 
     if args.prune is not None:
-        #TODO prune cct
-        pass
+        for cpuCCT in r.cpuCallingCtxTree:
+            pruneCCT(cpuCCT)
+
     #/root/GVProf-samples/pytorch/profiling_response.pb.gz
 
     print(r)
