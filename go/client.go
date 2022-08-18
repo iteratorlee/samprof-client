@@ -94,7 +94,7 @@ func main() {
 		defer conn.Close()
 		c := gpuprofiling.NewGPUProfilingServiceClient(conn)
 
-		ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+		ctx, cancel := context.WithTimeout(context.Background(), time.Duration(*duration/1000*3)*time.Second)
 		defer cancel()
 		r, err = c.PerformGPUProfiling(ctx, &gpuprofiling.GPUProfilingRequest{Duration: uint32(*duration)}, maxSizeOption)
 		if err != nil {
